@@ -1,0 +1,28 @@
+{
+  "name": "jadegrizzly",
+  "version": "0.1.0",
+  "description": "Organized photo scavenger hunts for friends, family and more",
+  "scripts": {
+    "start": "meteor",
+    "test": "grunt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/warring-hail/jadegrizzly.git"
+  },
+  "keywords": [
+    "charitable giving"
+  ],
+  "author": "warring-hail",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/warring-hail/jadegrizzly/issues"
+  },
+  "homepage": "https://github.com/warring-hail/jadegrizzly",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.10.0",
+    "jshint-stylish": "^1.0.0",
+    "load-grunt-tasks": "^1.0.0"
+  }
+}
