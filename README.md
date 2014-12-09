@@ -1,4 +1,5 @@
 # Snapshot Olympics
+[![Build Status](https://travis-ci.org/warring-hail/jadegrizzly.png)](https://travis-ci.org/warring-hail/jadegrizzly)
 
 > Organized photo scavenger hunts for friends, family and more.
 
@@ -59,7 +60,7 @@ Required packages are already installed. The full list can be found here:
 ```
 
 ### Database OverView
-We used 4 different Mongo Collections 
+We used 4 different Mongo Collections
 The 'players' collection is accessed by the Players variable
 The 'games' collection is accessed by the Games variable
 The 'images' collection is accessed by the Images variable
