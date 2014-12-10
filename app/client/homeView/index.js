@@ -2,6 +2,9 @@
  * Setup Client Collections
  */
 
+/* global Feats: true, Games: true, Images: true, Players: true, Accounts,
+Session, Template, Tracker */
+
 Players = new Meteor.Collection('players');
 Games = new Meteor.Collection('games');
 Feats = new Meteor.Collection('feats');
@@ -15,7 +18,7 @@ Meteor.subscribe('games');
 // originally it was:
 // Meteor.subscribe('images');
 Session.set('data_loaded', false);
-Tracker.autorun(function() {  
+Tracker.autorun(function() {
   if (Session.get('query')) {
     Meteor.subscribe('images', function() {
       Session.set('data_loaded', true);

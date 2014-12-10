@@ -2,6 +2,8 @@
  * Game helper & events
  */
 
+/* global Games, Images, MeteorCamera, ReactiveVar, Session, Template */
+
 Template.game.helpers({
   newGame: function() {
     return Games.findOne(Session.get('currentGameId'));
@@ -38,8 +40,7 @@ Template.game.events({
 
 // Created on game render.
 Template.gameEvent.created = function() {
-  this.glyphIcon = new ReactiveVar;
-  this.glyphIcon.set('glyphicon-pushpin');
+  this.glyphIcon = new ReactiveVar('glyphicon-pushpin');
 };
 
 Template.gameEvent.helpers({
@@ -69,15 +70,15 @@ Template.gameEvent.events({
       // The unique key is featName, gameId + playerId
 
       Images.insert({
-                      userId: userId,
-                      username: Meteor.user().username,
-                      gameId: gameId,
-                      featName: featName,
-                      "photoURL":data, // I don't know why photoURL is in quotes. I don't even know why it's called photoURL
-                      voteCount: 0,
-                      downVotes: [],
-                      upVotes: []
-                    });
+        userId: userId,
+        username: Meteor.user().username,
+        gameId: gameId,
+        featName: featName,
+        photoURL: data,
+        voteCount: 0,
+        downVotes: [],
+        upVotes: []
+      });
 
       template.glyphIcon.set('glyphicon-ok');
     });

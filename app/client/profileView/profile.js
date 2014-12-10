@@ -2,12 +2,14 @@
  *  Helpers for Player Profile
  */
 
+/* global Games, Session, Template */
+
 Template.profile.helpers({
   user: function() {
     return Meteor.user();
   },
   gameList: function() {
-    return Games.find({"createdBy": Meteor.userId()});
+    return Games.find({createdBy: Meteor.userId()});
   }
 });
 

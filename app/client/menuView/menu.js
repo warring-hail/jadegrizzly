@@ -1,3 +1,5 @@
+/* global Games, Session, Template */
+
 Template.menu.events({
   'click .createGame': function(evt, template) {
     var gameObj = {

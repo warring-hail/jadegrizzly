@@ -2,6 +2,8 @@
  * Create Game Helpers
  */
 
+/* global Games, Session, Template */
+
 Template.create.helpers({
   feats: function() {
     var gameId = Session.get('currentGameId');
@@ -23,7 +25,10 @@ Template.create.events({
 
     var input = template.find('.addEvents');
     var featName = input.value.trim();
-    var featNameCheck = Games.findOne({_id:Session.get('currentGameId'), "featList.name":featName});
+    var featNameCheck = Games.findOne({
+      _id: Session.get('currentGameId'),
+      'featList.name': featName
+    });
     if (!featNameCheck) {
       Meteor.call('gamesUpsert', Session.get('currentGameId'), {$push:{featList: {name: featName}}});
       console.log('game event created');
@@ -31,7 +36,7 @@ Template.create.events({
       // TODO add relevant message that feat already exists
       console.log('game event already exists');
     }
-    
+
     input.value = '';
   },
 
@@ -43,7 +48,7 @@ Template.create.events({
   'click .create-game': function(evt, template) {
     var value = template.find('.gameName').value;
     // TODO : This isn't checking the database to see that the game doesn't already
-    // have a name and the field was accidentally cleared. Just assumes that if the 
+    // have a name and the field was accidentally cleared. Just assumes that if the
     // field is empty the name never was defined.
     if (!value || value.length === 0) {
       console.log('game not started');

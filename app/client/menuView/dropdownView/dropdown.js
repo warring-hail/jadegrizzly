@@ -2,13 +2,15 @@
  * Dropdown Menu Helpers
  */
 
+/* global Games, Session, Template */
+
 Template.dropdown.events({
   'click a.createGame': function(evt, template) {
     var gameObj = {
       createdBy: Meteor.userId(),
       participants: [Meteor.userId()]
     };
-    
+
     Games.insert(gameObj, function(err, id) {
       // update current game Session id
       Session.set('currentGameId', id);
