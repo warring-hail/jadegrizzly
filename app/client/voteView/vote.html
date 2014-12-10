@@ -1,6 +1,8 @@
 <template name="vote">
   <h1 class="title">Vote</h1>
 
+  <input type="hidden" class="gameState" value="{{#if state === 'vote'}}vote{{/if}}{{#if state === 'input'}}input{{/if}}{{#if state === 'results'}}results{{/if}}">
+
   <div class="photo">
     <img src="{{getPhoto.path}}">
   </div>
@@ -17,12 +19,9 @@
   <div class="caption">
     <div class="block">
       <p class="text">{{text}}</p>
-      <div class="image-block">
-        <img class="full-width" src="{{photoURL}}" alt="image">
-      </div>
       <div class="vote-block">
-        <div class="upvote glyphicon glyphicon-plus {{#if checked}}checked{{/if}}"></div>
-        <div class="downvote glyphicon glyphicon-minus"></div>
+        <div class="upvote glyphicon glyphicon-plus {{#if upStyle}}selected{{/if}}"></div>
+        <div class="downvote glyphicon glyphicon-minus{{#if downStyle}}selected{{/if}}"></div>
       </div>
     </div>
   </div>
