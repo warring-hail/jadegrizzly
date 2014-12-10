@@ -13,7 +13,6 @@
     "nonbsp": true,
     "nonew": true,
     "quotmark": "single",
-    "unused": true,
     "undef": true,
 
     "maxcomplexity": 10,
