@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Organized photo scavenger hunts for friends, family and more",
   "scripts": {
-    "start": "meteor",
+    "start": "cd app; meteor",
     "test": "grunt"
   },
   "repository": {
@@ -11,7 +11,6 @@
     "url": "https://github.com/warring-hail/jadegrizzly.git"
   },
   "keywords": [
-    "charitable giving"
   ],
   "author": "warring-hail",
   "license": "MIT",
