@@ -1,40 +1,28 @@
-// set main template
+// set default template for all routes
 Router.configure({
   layoutTemplate: 'layout'
 });
 
-// check if user is logged in
+// redirect from the root to the input view
 Router.route('/', function() {
-  if (Meteor.user()) {
-    Router.go('/menu');
-  } else {
-    this.render('index');
-  }
+  this.render('input');
 });
 
 // handle routing for each view
-Router.route('/menu', function(){
-  this.render('menu');
+Router.route('/host', function(){
+  this.render('host');
 });
 
-Router.route('/create', function(){
-  this.render('create');
+Router.route('/input', function(){
+  this.render('input');
 });
 
-Router.route('/game', function(){
-  this.render('game');
+Router.route('/vote', function(){
+  this.render('vote');
 });
 
-Router.route('/photos', function(){
-  this.render('photos');
-});
-
-Router.route('/search', function(){
-  this.render('search');
-});
-
-Router.route('/profile', function(){
-  this.render('profile');
+Router.route('/results', function(){
+  this.render('results');
 });
 
 // default route for invalid URL

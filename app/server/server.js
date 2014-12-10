@@ -60,21 +60,21 @@ Games.allow({
  * Publish To Client
  */
 
-Meteor.publish('players', function() {
-  return Players.find();
-});
+// Meteor.publish('players', function() {
+//   return Players.find();
+// });
 
-Meteor.publish('users', function() {
-  return Meteor.users.find();
-});
+// Meteor.publish('users', function() {
+//   return Meteor.users.find();
+// });
 
-Meteor.publish('games', function() {
-  return Games.find();
-});
+// Meteor.publish('games', function() {
+//   return Games.find();
+// });
 
-Meteor.publish('images', function() {
-  return Images.find({});
-});
+// Meteor.publish('images', function() {
+//   return Images.find({});
+// });
 
 
 /**
