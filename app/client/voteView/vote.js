@@ -37,10 +37,10 @@ var hasDownVoted = function(voterId, captionId) {
 
 var ownCaptionCheck = function(captionId) {
   var userId = Session.get('playerID');
-  caption = Photos.find({_id: captionId});
+  var caption = Photos.find({_id: captionId});
 
   return userId === caption.playerID;
-}
+};
 
 /**
  * Helpers for each Caption

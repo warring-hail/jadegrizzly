@@ -85,7 +85,7 @@ Meteor.startup(function(){
   Photos.insert({
       photoID: '2',
       path: 'img2.jpg'
-    };
+    });
     Photos.insert({
       photoID: '3',
       path: 'img3.jpg' 
@@ -95,7 +95,7 @@ Meteor.startup(function(){
     { 
       stateID: '0',
       photoID: '1'
-    },
+    }
   );
 
 });
