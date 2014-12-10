@@ -1,7 +1,9 @@
-
 /**
  * Create Collections
  */
+
+/* global Games: true, Images: true, Players: true */
+
 Players = new Meteor.Collection('players');
 Games = new Meteor.Collection('games');
 Images = new Meteor.Collection('images');

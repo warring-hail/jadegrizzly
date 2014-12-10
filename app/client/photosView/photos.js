@@ -1,6 +1,8 @@
 /**
- * Photo View Helpers  
+ * Photo View Helpers
  */
+
+/* global Games, Images, Session, Template */
 
 Template.photos.helpers({
   photos: function() {
@@ -48,7 +50,7 @@ var hasDownVoted = function(voterId, photoId) {
 Template.snapshots.events({
   'click div.upvote': function(evt, template) {
     var userId = Meteor.userId();
-    
+
     var upVoteCheck = hasUpVoted(userId, this._id);
     var downVoteCheck = hasDownVoted(userId, this._id);
     if (downVoteCheck) {
@@ -67,7 +69,7 @@ Template.snapshots.events({
 
   'click div.downvote': function(evt, template) {
     var userId = Meteor.userId();
-    
+
     var upVoteCheck = hasUpVoted(userId, this._id);
     var downVoteCheck = hasDownVoted(userId, this._id);
     if (upVoteCheck) {
