@@ -2,23 +2,22 @@
  * Create Collections
  */
 
-/* global Games: true, Images: true, Players: true */
+/* global Users: true, Photos: true, Captions: true, Games: true,  */
 
 Players = new Meteor.Collection('players');
+Photos = new Meteor.Collection('photos');
+Captions = new Meteor.Collection('captions');
 Games = new Meteor.Collection('games');
-Images = new Meteor.Collection('images');
-
 
 /**
- * Authenticate Client For DB Access
+ * Restrict DB Access.  Currently allowing all types of actions.  
  */
-Images.allow({
+
+Players.allow({
   insert: function (userId, doc) {
-    // can only create docs where you are the author
     return true;
   },
   remove: function (userId, doc) {
-    // can only delete your own docs
     return true;
   },
   update: function(userId, doc) {
@@ -27,13 +26,23 @@ Images.allow({
 });
 
 
-Players.allow({
+Photos.allow({
   insert: function (userId, doc) {
-    // can only create docs where you are the author
     return true;
   },
   remove: function (userId, doc) {
-    // can only delete your own docs
+    return true;
+  },
+  update: function(userId, doc) {
+    return true;
+  }
+});
+
+Captions.allow({
+  insert: function (userId, doc) {
+    return true;
+  },
+  remove: function (userId, doc) {
     return true;
   },
   update: function(userId, doc) {
@@ -43,39 +52,15 @@ Players.allow({
 
 Games.allow({
   insert: function (userId, doc) {
-    // can only create docs where you are the author
     return true;
   },
   remove: function (userId, doc) {
-    // can only delete your own docs
     return true;
   },
   update: function(userId, doc) {
     return true;
   }
 });
-
-
-/**
- * Publish To Client
- */
-
-// Meteor.publish('players', function() {
-//   return Players.find();
-// });
-
-// Meteor.publish('users', function() {
-//   return Meteor.users.find();
-// });
-
-// Meteor.publish('games', function() {
-//   return Games.find();
-// });
-
-// Meteor.publish('images', function() {
-//   return Images.find({});
-// });
-
 
 /**
  * Server Methods
@@ -86,17 +71,16 @@ Meteor.methods({
     Players.upsert(id, doc);
   },
 
+  photosUpsert: function(id, doc) {
+    Photos.upsert(id, doc);
+  },
+
+  captionsUpsert: function(id, doc) {
+    Captions.upsert(id, doc);
+  },
+
   gamesUpsert: function(id, doc) {
     Games.upsert(id, doc);
-  },
-
-  featListUpdate: function(id, doc) {
-    Games.update(id, doc);
-  },
-
-  imagesUpsert: function(id, doc) {
-    Images.upsert(id, doc);
   }
-
 
 });

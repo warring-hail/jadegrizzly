@@ -1,6 +1,6 @@
 // set default template for all routes
 Router.configure({
-  layoutTemplate: 'layout'
+  layoutTemplate: 'master'
 });
 
 // redirect from the root to the input view
