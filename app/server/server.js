@@ -27,26 +27,28 @@ Meteor.startup(function(){
   // Comment this line out if you don't want the DB to empty on server restart
   clearCollections();
 
-  Players.insert([
-    {
+  Players.insert({
       playerID: '1h3k4l5j6h',
       name: 'dwayne'
-    }, {
+    });
+  Players.insert({
       playerID: 'k3k4l3l4l3',
       name: 'diane'
-    }, {
+    });
+  Players.insert({
       playerID: '2k3j4v5n6n',
       name: 'alfonso'
-    }, {
+    });
+  Players.insert({
       playerID: '374829dhfj',
       name: 'robert'
-    }, {
+    });
+  Players.insert({
       playerID: 'quwpeui4u3',
       name: 'fred'
-    }
-  ]);
+    });
 
-  Captions.insert([
+  Captions.insert(
     {
       playerID: '1h3k4l5j6h',
       text: ['most cutting thing you can say is "who\'s this clown?"',
@@ -55,7 +57,8 @@ Meteor.startup(function(){
       downvoteCount: '3',
       upvoteUsers: ['1h3k4l5j6h'],
       downvoteUsers: []
-    }, 
+    });
+  Captions.insert(
     {
       playerID: 'k3k4l3l4l3',
       text: 'How much for the horse tornado? Sir, that\'s a carousel. I must have it.',
@@ -63,7 +66,8 @@ Meteor.startup(function(){
       downvoteCount: '2',
       upvoteUsers: ['k3k4l3l4l3', 'quwpeui4u3'],
       downvoteUsers: ['1h3k4l5j6h', '374829dhfj']
-    }, 
+    });
+    Captions.insert( 
     {
       playerID: '2k3j4v5n6n',
       text: 'Sick of having to go to 2 different huts to buy pizza & sunglasses.',
@@ -71,28 +75,28 @@ Meteor.startup(function(){
       downvoteCount: '0',
       upvoteUsers: ['k3k4l3l4l3', 'quwpeui4u3', '1h3k4l5j6h'],
       downvoteUsers: []
-    }
-  ]);
+    });
 
-  Photos.insert([
+  Photos.insert(
     { 
       photoID: '1',
       path: 'img1.jpg',
-    }, {
+    });
+  Photos.insert({
       photoID: '2',
       path: 'img2.jpg'
-    }, {
+    };
+    Photos.insert({
       photoID: '3',
       path: 'img3.jpg' 
-    }
-  ]);
+    });
 
-  Games.insert([
+  Games.insert(
     { 
       stateID: '0',
       photoID: '1'
     },
-  ]);
+  );
 
 });
 

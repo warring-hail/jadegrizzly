@@ -12,7 +12,7 @@ Template.vote.helpers({
   },
   state: function() {
     var gameState = Games.find({});
-    return gameState.stateID});
+    return gameState.stateID;
   }
 });
 

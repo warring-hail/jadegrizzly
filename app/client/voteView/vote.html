@@ -1,7 +1,7 @@
 <template name="vote">
   <h1 class="title">Vote</h1>
 
-  <input type="hidden" class="gameState" value="{{#if state === 'vote'}}vote{{/if}}{{#if state === 'input'}}input{{/if}}{{#if state === 'results'}}results{{/if}}">
+  <input type="hidden" class="gameState" value="{{#if state = 'vote'}}vote{{/if}}{{#if state = 'input'}}input{{/if}}{{#if state = 'results'}}results{{/if}}">
 
   <div class="photo">
     <img src="{{getPhoto.path}}">
