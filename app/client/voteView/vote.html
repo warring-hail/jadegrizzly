@@ -1,0 +1,29 @@
+<template name="vote">
+  <h1 class="title">Vote</h1>
+
+  <div class="photo">
+    <img src="{{getPhoto.path}}">
+  </div>
+
+  <div class="captions">
+    {{#each captions}}
+      {{> onecaption}}
+    {{/each}}
+  </div>
+
+</template>
+
+<template name="onecaption">
+  <div class="caption">
+    <div class="block">
+      <p class="text">{{text}}</p>
+      <div class="image-block">
+        <img class="full-width" src="{{photoURL}}" alt="image">
+      </div>
+      <div class="vote-block">
+        <div class="upvote glyphicon glyphicon-plus {{#if checked}}checked{{/if}}"></div>
+        <div class="downvote glyphicon glyphicon-minus"></div>
+      </div>
+    </div>
+  </div>
+</template>
