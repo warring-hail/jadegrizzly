@@ -6,7 +6,7 @@ Games = new Meteor.Collection('games');
 
 Session.set('playerID', '2k3j4v5n6n');
 /**
- * Photo View Helpers  
+ * Photo View Helpers
  */
 
 Template.vote.helpers({
@@ -32,13 +32,13 @@ Template.vote.events({
 });
 
 var hasUpVoted = function(voterId, captionId) {
-  var query = {'_id':captionId, 'upvoteUsers': { $in: [ voterId ] } };
+  var query = {'_id':captionId, upvoteUsers: {$in: [voterId]}};
   var voteCheck = Captions.findOne(query);
   return (voteCheck !== undefined);
 };
 
 var hasDownVoted = function(voterId, captionId) {
-  var query = {'_id':captionId, 'downvoteUsers': { $in: [ voterId ] } };
+  var query = {'_id':captionId, downvoteUsers: {$in: [voterId]}};
   var voteCheck = Captions.findOne(query);
   return (voteCheck !== undefined);
 };
@@ -54,7 +54,7 @@ var ownCaptionCheck = function(captionId) {
  * Helpers for each Caption
  */
 
- Template.onecaption.helpers({
+Template.onecaption.helpers({
   upStyle: function() {
     var userId = Session.get('playerID');
     return hasUpVoted(userId, this._id);
@@ -74,13 +74,13 @@ Template.onecaption.events({
       var upVoteCheck = hasUpVoted(userId, this._id);
       var downVoteCheck = hasDownVoted(userId, this._id);
       if (downVoteCheck) {
-        Meteor.call('captionsUpsert', this._id, {$inc: {'downvoteCount': -1}});
-        Meteor.call('captionsUpsert', this._id, {$pull: {'downvoteUsers': userId}});
+        Meteor.call('captionsUpsert', this._id, {$inc: {downvoteCount: -1}});
+        Meteor.call('captionsUpsert', this._id, {$pull: {downvoteUsers: userId}});
         console.log('removed downvote');
       } else if (!upVoteCheck) {
         console.log('upVoted');
-        Meteor.call('captionsUpsert', this._id, {$inc: {'upvoteCount': 1}});
-        Meteor.call('captionsUpsert', this._id, {$push: {'upvoteUsers': userId}});
+        Meteor.call('captionsUpsert', this._id, {$inc: {upvoteCount: 1}});
+        Meteor.call('captionsUpsert', this._id, {$push: {upvoteUsers: userId}});
       }
       else {
         console.log('prevented upvote');
@@ -92,20 +92,20 @@ Template.onecaption.events({
 
   'click div.downvote': function(evt, template) {
     var userId = Session.get('playerID');
-    
+
     var ownCaption = ownCaptionCheck(this._id);
     console.log(ownCaption);
     if (!ownCaption) {
       var upVoteCheck = hasUpVoted(userId, this._id);
       var downVoteCheck = hasDownVoted(userId, this._id);
       if (upVoteCheck) {
-        Meteor.call('captionsUpsert', this._id, {$inc: {'upvoteCount': -1}});
-        Meteor.call('captionsUpsert', this._id, {$pull: {'upvoteUsers': userId}});
+        Meteor.call('captionsUpsert', this._id, {$inc: {upvoteCount: -1}});
+        Meteor.call('captionsUpsert', this._id, {$pull: {upvoteUsers: userId}});
         console.log('removed upvote');
       } else if (!downVoteCheck) {
         console.log('downvoted');
-        Meteor.call('captionsUpsert', this._id, {$inc: {'downvoteCount': 1}});
-        Meteor.call('captionsUpsert', this._id, {$push: {'downvoteUsers': userId}});
+        Meteor.call('captionsUpsert', this._id, {$inc: {downvoteCount: 1}});
+        Meteor.call('captionsUpsert', this._id, {$push: {downvoteUsers: userId}});
       } else {
         console.log('prevented downvote');
       }

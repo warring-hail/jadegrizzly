@@ -12,9 +12,12 @@ module.exports = function(grunt) {
         jshintrc: '.jshintrc',
         reporter: require('jshint-stylish')
       }
+    },
+    jscs: {
+      src: jsFiles
     }
   });
   require('load-grunt-tasks')(grunt);
 
-  grunt.registerTask('default', ['jshint']);
+  grunt.registerTask('default', ['jshint', 'jscs']);
 };
