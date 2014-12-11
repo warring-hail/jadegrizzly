@@ -19,6 +19,7 @@ ddp@1.0.12
 deps@1.0.5
 ejson@1.0.4
 email@1.0.4
+ewall:foundation@5.4.7
 fastclick@1.0.1
 follower-livedata@1.0.2
 geojson-utils@1.0.1
