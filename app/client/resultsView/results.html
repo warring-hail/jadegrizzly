@@ -1,0 +1,38 @@
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<template name="results">
+  <div class="results">
+    <h1>We have a winner!</h1>
+    <img src="{{photoPath}}" class="photo"/>
+    <div class="winner">
+     <h3>{{winner.text}}</h3>
+     <p>
+     Author: {{winner.name}} | Votes {{winner.score}}
+     <p
+    </div>
+ 
+    <div class="runnersUp">
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Caption</th>
+          <th>Votes</th>
+        </tr>
+       {{#each runnersUp}}
+        {{> runnerUp}}
+       {{/each}}
+      </table>
+    </div>
+  </div>
+</template>
+
+<template name="runnerUp">
+    <tr>
+      <td>{{playerID}}</td>
+      <td>{{text}}</td>
+      <td>{{upvoteCount}}</td>
+    </tr>
+</template>
+
