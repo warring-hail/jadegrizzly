@@ -8,7 +8,7 @@ Router.route('/', function() {
   this.render('input');
 });
 
-// handle routing for each view
+// host views
 Router.route('/start', function() {
   this.render('start');
 });
@@ -17,6 +17,7 @@ Router.route('/navigate', function() {
   this.render('navigate');
 });
 
+// player views
 Router.route('/input', function() {
   this.render('input');
 });

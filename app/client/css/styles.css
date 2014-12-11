@@ -1,0 +1,80 @@
+body {
+  padding: 20px;
+  font-family: 'Open Sans', sans-serif;
+
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 1.6em;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 1.17em;
+  font-weight: bold;
+}
+
+.photo {
+  max-width:90%;
+  max-height:90%;
+  margin-top: 15px;
+}
+
+.results {
+  text-align: center;
+  margin-top: 20px;
+  width: 280px;
+  margin: auto;
+}
+
+  .results .winner {
+    padding: 10px;
+  
+    background-color: #E3F2FD;
+    border: 1px solid #BBDEFB;
+    border-radius: 5px;
+    margin: 0 0 10px 0;
+  }
+
+  .winner h3 {
+    margin-top: 10px;
+  }
+
+  .winner p {
+    margin-top: 10px;
+  }
+
+  .runnersUp {
+    padding-top: 12px;
+  }
+
+    .runnersUp h3 {
+      margin-bottom: 10px;
+    }
+
+    .runnersUp table {
+      width: 100%;
+    }
+
+    .runnersUp th {
+      font-weight: bold;
+      font-size: .9em;
+    }
+
+    .runnersUp td {
+      font-size: .8em;
+    }
+
+    td.caption {
+      text-align: left;
+    }
+
+    .runnersUp .name {
+      font-weight: bold;
+    }
+
