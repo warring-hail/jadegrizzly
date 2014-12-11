@@ -1,11 +1,10 @@
-/* global Games, Images, Session, Template */
-
+/* global Players: true, Photos: true, Captions: true, Games: true */
 Players = new Meteor.Collection('players');
 Photos = new Meteor.Collection('photos');
 Captions = new Meteor.Collection('captions');
 Games = new Meteor.Collection('games');
 
-Session.set("playerID", '2k3j4v5n6n');
+Session.set('playerID', '2k3j4v5n6n');
 /**
  * Photo View Helpers
  */
@@ -17,7 +16,7 @@ Template.vote.helpers({
   getImage: function() {
     // console.log('getImage');
     var picId = Games.find({}).fetch();
-    return Photos.findOne({photoID: picId[0]['photoID']});
+    return Photos.findOne({photoID: picId[0].photoID});
   },
   state: function() {
     var gameState = Games.find({});
@@ -48,7 +47,7 @@ var ownCaptionCheck = function(captionId) {
   var userId = Session.get('playerID');
   var caption = Captions.findOne({_id: captionId});
 
-  return userId === caption['playerID'];
+  return userId === caption.playerID;
 };
 
 /**
