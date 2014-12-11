@@ -16,17 +16,17 @@ Template.game.helpers({
 });
 
 Template.game.events({
-  'click .navigate-photos': function(evt, template){
+  'click .navigate-photos': function(evt, template) {
     Router.go('/photos');
   },
-  'click .navigate-events': function(evt, template){
+  'click .navigate-events': function(evt, template) {
     Router.go('/game');
   },
-  'click .go-back': function(evt, template){
+  'click .go-back': function(evt, template) {
     Router.go('/create');
   },
 
-  'click .logout': function(evt, template){
+  'click .logout': function(evt, template) {
     console.log('Logging user out...');
     Meteor.logout(function(err) {
       Router.go('/');
@@ -50,7 +50,7 @@ Template.gameEvent.helpers({
 });
 
 Template.gameEvent.events({
-  'click a.event-name': function (evt, template) {
+  'click a.event-name': function(evt, template) {
     var cameraOptions = {
       width: 800,
       height: 600
@@ -59,8 +59,8 @@ Template.gameEvent.events({
     var featName = this.name;
     var glyphIcon = template.glyphIcon.get();
 
-    MeteorCamera.getPicture(cameraOptions, function (error, data) {
-      if(error) { console.log(error); }
+    MeteorCamera.getPicture(cameraOptions, function(error, data) {
+      if (error) { console.log(error); }
       // INSERT URL TO DB
       Session.set('eventImage', data);
       var gameId = Session.get('currentGameId');

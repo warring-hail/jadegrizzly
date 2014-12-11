@@ -9,19 +9,19 @@ Router.route('/', function() {
 });
 
 // handle routing for each view
-Router.route('/host', function(){
+Router.route('/host', function() {
   this.render('host');
 });
 
-Router.route('/input', function(){
+Router.route('/input', function() {
   this.render('input');
 });
 
-Router.route('/vote', function(){
+Router.route('/vote', function() {
   this.render('vote');
 });
 
-Router.route('/results', function(){
+Router.route('/results', function() {
   this.render('results');
 });
 

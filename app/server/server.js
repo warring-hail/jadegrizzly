@@ -10,7 +10,7 @@ Games = new Meteor.Collection('games');
 
 // Initialize dummy db data
 
-Meteor.startup(function(){
+Meteor.startup(function() {
 
   // Comment this line out if you don't want the DB to empty on server restart
   Meteor.call('clearCollections');
@@ -55,7 +55,7 @@ Meteor.startup(function(){
       upvoteUsers: ['k3k4l3l4l3', 'quwpeui4u3'],
       downvoteUsers: ['1h3k4l5j6h', '374829dhfj']
     });
-    Captions.insert(
+  Captions.insert(
     {
       playerID: '2k3j4v5n6n',
       text: 'Sick of having to go to 2 different huts to buy pizza & sunglasses.',
@@ -74,7 +74,7 @@ Meteor.startup(function(){
       photoID: '2',
       path: 'img2.jpg'
     });
-    Photos.insert({
+  Photos.insert({
       photoID: '3',
       path: 'img3.jpg'
     });
@@ -91,10 +91,10 @@ Meteor.startup(function(){
 // Restrict DB Access.  Currently allowing all types of actions.
 
 Players.allow({
-  insert: function (userId, doc) {
+  insert: function(userId, doc) {
     return true;
   },
-  remove: function (userId, doc) {
+  remove: function(userId, doc) {
     return true;
   },
   update: function(userId, doc) {
@@ -103,10 +103,10 @@ Players.allow({
 });
 
 Photos.allow({
-  insert: function (userId, doc) {
+  insert: function(userId, doc) {
     return true;
   },
-  remove: function (userId, doc) {
+  remove: function(userId, doc) {
     return true;
   },
   update: function(userId, doc) {
@@ -115,10 +115,10 @@ Photos.allow({
 });
 
 Captions.allow({
-  insert: function (userId, doc) {
+  insert: function(userId, doc) {
     return true;
   },
-  remove: function (userId, doc) {
+  remove: function(userId, doc) {
     return true;
   },
   update: function(userId, doc) {
@@ -127,10 +127,10 @@ Captions.allow({
 });
 
 Games.allow({
-  insert: function (userId, doc) {
+  insert: function(userId, doc) {
     return true;
   },
-  remove: function (userId, doc) {
+  remove: function(userId, doc) {
     return true;
   },
   update: function(userId, doc) {
