@@ -149,8 +149,11 @@ Meteor.methods({
     Photos.upsert(id, doc);
   },
 
-  captionsUpsert: function(id, doc) {
-    Captions.upsert(id, doc);
+  captionsInsert: function(id, caption) {
+    Captions.insert({
+      playerID: id,
+      text: caption
+    });
   },
 
   gamesUpsert: function(id, doc) {
