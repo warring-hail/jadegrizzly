@@ -22,7 +22,7 @@ h3 {
 .photo {
   max-width:90%;
   max-height:90%;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 .results {
@@ -47,29 +47,28 @@ h3 {
 
   .winner p {
     margin-top: 10px;
-    font-weight: bold;
   }
 
   .runnersUp {
     padding-top: 12px;
   }
 
-  .runnersUp h3 {
-    margin-bottom: 10px;
-  }
+    .runnersUp h3 {
+      margin-bottom: 10px;
+    }
 
-  .runnersUp table {
-    width: 100%;
-  }
+    .runnersUp table {
+      width: 100%;
+    }
 
-  .runnersUp th {
-    font-weight: bold;
-    font-size: 1.1em;
-  }
+    .runnersUp th {
+      font-weight: bold;
+      font-size: .9em;
+    }
 
-  .runnersUp td {
-    font-size: .8em;
-  }
+    .runnersUp td {
+      font-size: .8em;
+    }
 
     td.caption {
       text-align: left;
