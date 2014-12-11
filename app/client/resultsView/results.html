@@ -1,24 +1,25 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700'
+ rel='stylesheet' type='text/css'>
 </head>
 
 <template name="results">
   <div class="results">
-    <h1>We have a winner!</h1>
-    <img src="{{photoPath}}" class="photo"/>
     <div class="winner">
+    <h2>We have a winner!</h2>
+    <img src="{{photoPath}}" class="photo"/>
      <h3>{{winner.text}}</h3>
      <p>
-     Author: {{winner.name}} | Votes {{winner.score}}
-     <p
+     By {{winner.name}} with {{winner.score}} votes
+     </p>
     </div>
- 
     <div class="runnersUp">
-      <table>
+     <h3>RUNNERS UP</h3>
+      <table class="zebra">
         <tr>
-          <th>Name</th>
-          <th>Caption</th>
           <th>Votes</th>
+          <th>Caption</th>
         </tr>
        {{#each runnersUp}}
         {{> runnerUp}}
@@ -30,9 +31,8 @@
 
 <template name="runnerUp">
     <tr>
-      <td>{{playerID}}</td>
-      <td>{{text}}</td>
       <td>{{upvoteCount}}</td>
+      <td class="caption"><span class="name">By {{name}}</span> {{text}}</td>
     </tr>
 </template>
 

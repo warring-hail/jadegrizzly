@@ -33,9 +33,11 @@ Template.results.helpers({
     }
   },
   runnersUp: function() {
-    //console.log(getWinners().slice(1,5));
-    //return Captions.find({});
-    return getWinners().slice(1,5);
+    var runnersUp = getWinners().slice(1,5);
+    for ( var i = 0; i < runnersUp.length; i++) {
+      runnersUp[i].name = getName(runnersUp[i].playerID);
+    }
+    return runnersUp
   },
   photoPath: function() {
     var photo = Games.find({}).fetch();
