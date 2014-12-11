@@ -1,3 +1,11 @@
+/* global Games, Images, Session, Template */
+
+Players = new Meteor.Collection('players');
+Photos = new Meteor.Collection('photos');
+Captions = new Meteor.Collection('captions');
+Games = new Meteor.Collection('games');
+
+Session.set("playerID", '2k3j4v5n6n');
 /**
  * Photo View Helpers
  */
@@ -7,8 +15,9 @@ Template.vote.helpers({
     return Captions.find({});
   },
   getImage: function() {
-    var picId = Games.find({});
-    return Photos.find({_id: picId.photoID});
+    // console.log('getImage');
+    var picId = Games.find({}).fetch();
+    return Photos.findOne({photoID: picId[0]['photoID']});
   },
   state: function() {
     var gameState = Games.find({});
@@ -37,9 +46,9 @@ var hasDownVoted = function(voterId, captionId) {
 
 var ownCaptionCheck = function(captionId) {
   var userId = Session.get('playerID');
-  var caption = Photos.find({_id: captionId});
+  var caption = Captions.findOne({_id: captionId});
 
-  return userId === caption.playerID;
+  return userId === caption['playerID'];
 };
 
 /**
@@ -86,13 +95,14 @@ Template.onecaption.events({
     var userId = Session.get('playerID');
 
     var ownCaption = ownCaptionCheck(this._id);
+    console.log(ownCaption);
     if (!ownCaption) {
       var upVoteCheck = hasUpVoted(userId, this._id);
       var downVoteCheck = hasDownVoted(userId, this._id);
       if (upVoteCheck) {
         Meteor.call('captionsUpsert', this._id, {$inc: {upvoteCount: -1}});
         Meteor.call('captionsUpsert', this._id, {$pull: {upvoteUsers: userId}});
-        console.log('removed downvote');
+        console.log('removed upvote');
       } else if (!downVoteCheck) {
         console.log('downvoted');
         Meteor.call('captionsUpsert', this._id, {$inc: {downvoteCount: 1}});
