@@ -6,6 +6,7 @@ Photos = new Meteor.Collection('photos');
 Captions = new Meteor.Collection('captions');
 Games = new Meteor.Collection('games');
 
+
 var playerID = '';
 
 //generate playerID
@@ -43,10 +44,22 @@ Template.input.events({
 
     // Prevent default form submit
     return false;
-  }
+  },
 
-  // "click .navigate-vote": function(event){
-  //   Games.update(this._id,{$set: stateID: 'vote'});
-  //   Router.go('/vote');
-  // }
+  'click .navigate-vote': function(event) {
+    var games = Games.find({}).fetch();
+
+    //for testing; remove once state connected
+    Meteor.call('gamesUpsert', games[0]._id, {
+        $set: {stateID: '1'}
+    });
+    //=======================================
+
+    if (games[0].stateID === '1') {
+      Meteor.call('gamesUpsert', games[0]._id, {
+        $set: {stateID: '2'}
+      });
+      Router.go('/vote');
+    }
+  }
 });
