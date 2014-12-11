@@ -28,6 +28,12 @@
 
     "predef": [
         "Meteor",
-        "Router"
+        "Router",
+        "Template",
+        "Session",
+        "Players",
+        "Photos",
+        "Captions",
+        "Games"
     ]
 }
