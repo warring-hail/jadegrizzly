@@ -1,4 +1,5 @@
 /* global Players: true, Photos: true, Captions: true, Games: true */
+
 Players = new Meteor.Collection('players');
 Photos = new Meteor.Collection('photos');
 Captions = new Meteor.Collection('captions');
@@ -47,7 +48,7 @@ var ownCaptionCheck = function(captionId) {
   var userId = Session.get('playerID');
   var caption = Captions.findOne({_id: captionId});
 
-  return userId === caption.playerID;
+  return userId === caption['playerID'];
 };
 
 /**
