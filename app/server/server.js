@@ -8,24 +8,12 @@ Photos = new Meteor.Collection('photos');
 Captions = new Meteor.Collection('captions');
 Games = new Meteor.Collection('games');
 
-
-// Function for clearing past data out of collections
-
-var clearCollections = function() {
-  var globalObject = global;
-  for (var property in globalObject) {
-      if(globalObject[property] instanceof Meteor.Collection){
-          globalObject[property].remove({});
-      }
-  }
-};
-
 // Initialize dummy db data
 
 Meteor.startup(function(){
 
   // Comment this line out if you don't want the DB to empty on server restart
-  clearCollections();
+  Meteor.call('clearCollections');
 
   Players.insert({
       playerID: '1h3k4l5j6h',
@@ -67,7 +55,7 @@ Meteor.startup(function(){
       upvoteUsers: ['k3k4l3l4l3', 'quwpeui4u3'],
       downvoteUsers: ['1h3k4l5j6h', '374829dhfj']
     });
-    Captions.insert( 
+    Captions.insert(
     {
       playerID: '2k3j4v5n6n',
       text: 'Sick of having to go to 2 different huts to buy pizza & sunglasses.',
@@ -78,7 +66,7 @@ Meteor.startup(function(){
     });
 
   Photos.insert(
-    { 
+    {
       photoID: '1',
       path: 'img1.jpg',
     });
@@ -88,11 +76,11 @@ Meteor.startup(function(){
     });
     Photos.insert({
       photoID: '3',
-      path: 'img3.jpg' 
+      path: 'img3.jpg'
     });
 
   Games.insert(
-    { 
+    {
       stateID: '0',
       photoID: '1'
     }
@@ -100,7 +88,7 @@ Meteor.startup(function(){
 
 });
 
-// Restrict DB Access.  Currently allowing all types of actions.  
+// Restrict DB Access.  Currently allowing all types of actions.
 
 Players.allow({
   insert: function (userId, doc) {
@@ -167,6 +155,15 @@ Meteor.methods({
 
   gamesUpsert: function(id, doc) {
     Games.upsert(id, doc);
-  }
+  },
 
+  // Function for clearing past data out of collections
+  clearCollections: function() {
+    var globalObject = global;
+    for (var property in globalObject) {
+      if (globalObject[property] instanceof Meteor.Collection) {
+        globalObject[property].remove({});
+      }
+    }
+  }
 });
