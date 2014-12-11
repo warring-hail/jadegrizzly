@@ -9,8 +9,12 @@ Router.route('/', function() {
 });
 
 // handle routing for each view
-Router.route('/host', function() {
-  this.render('host');
+Router.route('/start', function() {
+  this.render('start');
+});
+
+Router.route('/navigate', function() {
+  this.render('navigate');
 });
 
 Router.route('/input', function() {

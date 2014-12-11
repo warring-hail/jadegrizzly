@@ -27,13 +27,14 @@
     "node": true,
 
     "predef": [
-        "Meteor",
-        "Router",
-        "Template",
-        "Session",
-        "Players",
-        "Photos",
+        "$",
         "Captions",
-        "Games"
+        "Games",
+        "Meteor",
+        "Photos",
+        "Players",
+        "Router",
+        "Session",
+        "Template"
     ]
 }
