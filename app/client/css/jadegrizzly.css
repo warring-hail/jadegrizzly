@@ -344,6 +344,10 @@ em {
   color: steelblue;
 }
 
+.selected {
+  color: steelblue;
+}
+
 .vote-block {
   margin-top: 10px;
 }

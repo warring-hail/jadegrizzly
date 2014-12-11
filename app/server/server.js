@@ -53,8 +53,8 @@ Meteor.startup(function(){
       playerID: '1h3k4l5j6h',
       text: ['most cutting thing you can say is "who\'s this clown?"',
       ' because it implies they\'re a) a clown & b) not even one of the better-known clowns'].join(''),
-      upvoteCount: '1',
-      downvoteCount: '3',
+      upvoteCount: 1,
+      downvoteCount: 3,
       upvoteUsers: ['1h3k4l5j6h'],
       downvoteUsers: []
     });
@@ -62,8 +62,8 @@ Meteor.startup(function(){
     {
       playerID: 'k3k4l3l4l3',
       text: 'How much for the horse tornado? Sir, that\'s a carousel. I must have it.',
-      upvoteCount: '2',
-      downvoteCount: '2',
+      upvoteCount: 2,
+      downvoteCount: 2,
       upvoteUsers: ['k3k4l3l4l3', 'quwpeui4u3'],
       downvoteUsers: ['1h3k4l5j6h', '374829dhfj']
     });
@@ -71,8 +71,8 @@ Meteor.startup(function(){
     {
       playerID: '2k3j4v5n6n',
       text: 'Sick of having to go to 2 different huts to buy pizza & sunglasses.',
-      upvoteCount: '3',
-      downvoteCount: '0',
+      upvoteCount: 3,
+      downvoteCount: 0,
       upvoteUsers: ['k3k4l3l4l3', 'quwpeui4u3', '1h3k4l5j6h'],
       downvoteUsers: []
     });
