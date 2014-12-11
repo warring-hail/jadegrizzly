@@ -4,7 +4,9 @@
   <input type="hidden" class="gameState" value="{{#if state = 'vote'}}vote{{/if}}{{#if state = 'input'}}input{{/if}}{{#if state = 'results'}}results{{/if}}">
 
   <div class="photo">
-    <img src="{{getPhoto.path}}">
+    {{#with getImage}}
+      <img src="/img/{{path}}">
+    {{/with}}
   </div>
 
   <div class="captions">
@@ -21,7 +23,7 @@
       <p class="text">{{text}}</p>
       <div class="vote-block">
         <div class="upvote glyphicon glyphicon-plus {{#if upStyle}}selected{{/if}}"></div>
-        <div class="downvote glyphicon glyphicon-minus{{#if downStyle}}selected{{/if}}"></div>
+        <div class="downvote glyphicon glyphicon-minus {{#if downStyle}}selected{{/if}}"></div>
       </div>
     </div>
   </div>
