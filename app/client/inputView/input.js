@@ -8,17 +8,15 @@ Games = new Meteor.Collection('games');
 
 var playerID = '';
 
-var generatePlayerID = function() {
+//generate playerID
+(function() {
   var count = 10;
   while (count > 0) {
     playerID += Math.floor(Math.random() * 10);
     count -= 1;
   }
-};
+})();
 
-generatePlayerID();
-
-//set playerID to the Session
 Session.set('PlayerID', playerID);
 
 Template.input.helpers({
@@ -34,7 +32,6 @@ Template.input.events({
     var caption = event.target.caption.value;
     var name = event.target.name.value;
 
-    //Set name to the session
     Session.set('name', name);
 
     //insert new caption to the Caption collection
