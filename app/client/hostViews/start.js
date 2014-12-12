@@ -10,7 +10,7 @@ Template.start.events({
     var numPhotos = Photos.find().count();
 
     // TODO: don't choose a photoID we've already (or at least recently) seen
-    var photoID = Math.floor(Math.random() * numPhotos);
+    var photoID = Math.floor(Math.random() * numPhotos).toString();
     var stateID = 1;
     Session.set('host', true);
     var gameObj = {

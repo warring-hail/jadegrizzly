@@ -1,9 +1,3 @@
-/* global Captions: true, Template, Photos: true, Players: true, Games: true */
-Players = new Meteor.Collection('players');
-Photos = new Meteor.Collection('photos');
-Captions = new Meteor.Collection('captions');
-Games = new Meteor.Collection('games');
-
 var getScore = function(caption) {
   return caption.upvoteCount - caption.downvoteCount ;
 };
