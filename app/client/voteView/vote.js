@@ -113,7 +113,6 @@ Tracker.autorun(function() {
   var gameData = Games.find({}).fetch();
   var host = Session.get('host');
   var statePaths = {
-    // 0: 'create',
     1: 'input',
     2: 'vote',
     3: 'results'
@@ -121,41 +120,9 @@ Tracker.autorun(function() {
 
   if (gameData[0]) {
     var stateNum = gameData[0].stateID;
-    console.log(statePaths[stateNum]);
     if (!host) {
       Router.go('/' + statePaths[stateNum]);
     }
   }
 });
 
-
-// Tracker.autorun(function() {
-//   var gameData = Games.find({}).fetch();
-//   var gameState = Session.get('state');
-//   var statePaths = {
-//     0: 'create',
-//     1: 'pending',
-//     2: 'input',
-//     3: 'vote',
-//     4: 'results'
-//   };
-
-//   if (gameData[0] && gameState) {
-//     var stateNum = gameData[0].stateID;
-//     console.log(statePaths[stateNum]);
-//     if (gameState !== stateNum) {
-//       Session.set('state', stateNum);
-//       Router.go('/' + statePaths[stateNum]);
-//     }
-//   }
-// });
-
-
-// Tracker.autorun(function(computation) {
-//   var gameData = Games.find({}).fetch();
-//   var gameState = Session.get('state');
-//   if (!gameState && gameData[0]) {
-//     Session.set('state', gameData[0].stateID);
-//     computation.stop();
-//   }
-// });
