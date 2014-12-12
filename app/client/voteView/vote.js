@@ -76,7 +76,10 @@ var removeDownVote = function(id, userId) {
 Template.onecaption.events({
   'click i.voteButton': function(evt, template) {
     var stateCheck = Games.findOne().stateID;
-    if (stateCheck === 2) {
+    if (stateCheck !== 2) {
+      var statePaths = ['pending', 'input', 'vote', 'results'];
+      Router.go('/' + statePaths[stateCheck]);
+    } else {
       var userId = Session.get('currentPlayerID');
       var captionId = this._id;
       var upVoteCheck = hasUpVoted(userId, captionId);
