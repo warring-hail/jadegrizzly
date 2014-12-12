@@ -5,7 +5,7 @@ Router.configure({
 
 // redirect from the root to the input view
 Router.route('/', function() {
-  this.render('start');
+  this.render('input');
 });
 
 // host views
