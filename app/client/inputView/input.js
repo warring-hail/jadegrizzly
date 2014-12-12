@@ -20,8 +20,11 @@ var playerID = '';
 Template.input.helpers({
   photos: function() {
     var game = Games.findOne();
-    var photoID = game.photoID;
-    return Photos.findOne({photoID: photoID});
+    if (game) {
+      var photoID = game.photoID;
+      return Photos.findOne({photoID: photoID});
+    }
+    return null;
   }
 });
 
