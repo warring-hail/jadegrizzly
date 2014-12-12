@@ -29,13 +29,17 @@ body {
   .voteButton {
     width: 20px;
     height: 20px;
-    padding: 9px;
+    padding: 12px;
     font-size: 1em;
-    margin: 5px;
+    margin: 7px;
   }
 
   i.voteButton.disabled {
-    background-color: #99D1E3;
+    background-color: #99D1E3 !important; 
+  }
+
+  i.ownCaption {
+    background-color: #cccccc !important;
   }
 
    
