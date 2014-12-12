@@ -6,7 +6,6 @@ Photos = new Meteor.Collection('photos');
 Captions = new Meteor.Collection('captions');
 Games = new Meteor.Collection('games');
 
-
 var playerID = '';
 
 //generate playerID
@@ -20,8 +19,8 @@ var playerID = '';
 
 Template.input.helpers({
   photos: function() {
-    var games = Games.find({}).fetch();
-    var photoID = games[0].photoID;
+    var game = Games.findOne();
+    var photoID = game.photoID;
     return Photos.findOne({photoID: photoID});
   }
 });
@@ -41,7 +40,6 @@ Template.input.events({
 
     //insert new caption into the Caption collection
     Meteor.call('captionsInsert', caption);
-
 
     //reset caption input field
     event.target.caption.value = '';

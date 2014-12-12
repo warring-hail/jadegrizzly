@@ -151,6 +151,10 @@ Meteor.methods({
     Photos.upsert(id, doc);
   },
 
+  captionsUpsert: function(id, doc) {
+    Captions.upsert(id, doc);
+  },
+
   captionsInsert: function(caption) {
     Captions.insert({
       playerID: Session.get('currentPlayerID'),
