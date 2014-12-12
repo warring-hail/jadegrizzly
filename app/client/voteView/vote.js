@@ -1,5 +1,3 @@
-/* global Players: true, Photos: true, Captions: true, Games: true */
-
 /**
  * Photo View Helpers
  */
@@ -10,8 +8,8 @@ Template.vote.helpers({
   },
   getImage: function() {
     // console.log('getImage');
-    var picId = Games.find({}).fetch();
-    return Photos.findOne({photoID: picId[0].photoID});
+    var picId = Games.findOne();
+    return Photos.findOne({photoID: picId.photoID});
   }
 });
 
@@ -108,16 +106,12 @@ Template.onecaption.events({
 
 
 Tracker.autorun(function() {
-  var gameData = Games.find({}).fetch();
+  var gameData = Games.findOne();
   var host = Session.get('host');
-  var statePaths = {
-    1: 'input',
-    2: 'vote',
-    3: 'results'
-  };
+  var statePaths = ['pending', 'input', 'vote', 'results'];
 
-  if (gameData[0]) {
-    var stateNum = gameData[0].stateID;
+  if (gameData) {
+    var stateNum = gameData.stateID;
     if (!host) {
       Router.go('/' + statePaths[stateNum]);
     }
