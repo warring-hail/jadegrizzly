@@ -17,12 +17,10 @@ var playerID = '';
   }
 })();
 
-Session.set('PlayerID', playerID);
-
 Template.input.helpers({
   photos: function() {
-    var games = Games.find({}).fetch();
-    var photoID = games[0].photoID;
+    var game = Games.findOne();
+    var photoID = game.photoID;
     return Photos.findOne({photoID: photoID});
   }
 });
@@ -32,10 +30,16 @@ Template.input.events({
     var caption = event.target.caption.value;
     var name = event.target.name.value;
 
-    Session.set('name', name);
+    var playerObj = {
+      playerID: playerID,
+      name: name
+    };
 
-    //insert new caption to the Caption collection
-    Meteor.call('captionsInsert', Session.get('PlayerID'), caption);
+    //insert player into the Player collection
+    Meteor.call('playersInsert', playerObj);
+
+    //insert new caption into the Caption collection
+    Meteor.call('captionsInsert', caption);
 
     //reset caption input field
     event.target.caption.value = '';
@@ -43,10 +47,9 @@ Template.input.events({
 
     // Prevent default form submit
     return false;
-  }
+  },
 
-  // "click .navigate-vote": function(event){
-  //   Games.update(this._id,{$set: stateID: 'vote'});
-  //   Router.go('/vote');
-  // }
+  'click .navigate-vote': function(event) {
+    Router.go('/vote');
+  }
 });

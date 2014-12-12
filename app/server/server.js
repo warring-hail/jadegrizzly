@@ -141,17 +141,23 @@ Games.allow({
 // Server methods, currently not performing any restrictions on db methods
 
 Meteor.methods({
-  playersUpsert: function(id, doc) {
-    Players.upsert(id, doc);
+  playersInsert: function(doc) {
+    Players.insert(doc, function(err, id) {
+      Session.set('currentPlayerID', id);
+    });
   },
 
   photosUpsert: function(id, doc) {
     Photos.upsert(id, doc);
   },
 
-  captionsInsert: function(id, caption) {
+  captionsUpsert: function(id, doc) {
+    Captions.upsert(id, doc);
+  },
+
+  captionsInsert: function(caption) {
     Captions.insert({
-      playerID: id,
+      playerID: Session.get('currentPlayerID'),
       text: caption
     });
   },
