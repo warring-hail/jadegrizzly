@@ -9,6 +9,15 @@ body {
   margin-bottom: 15px;
 }
 
+/* INPUT VIEW */
+
+.container {
+  text-align: center;
+  width: 280px;
+  margin-top: 20px;
+  margin: auto;
+}
+
 /* VOTE VIEW */
 
 .vote {
