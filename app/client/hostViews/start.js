@@ -1,5 +1,12 @@
 Template.start.events({
   'click .start-game': function(event) {
+    var gameId = Session.get('currentGameId');
+    if (gameId) {
+      Games.remove(gameId, function(err, id) {
+        if (err) { console.log('An error occured:', err); }
+      });
+    }
+
     var numPhotos = Photos.find().count();
 
     // TODO: don't choose a photoID we've already (or at least recently) seen
@@ -12,6 +19,7 @@ Template.start.events({
     };
 
     Games.insert(gameObj, function(err, id) {
+      if (err) { console.log('An error occured:', err); }
       Session.set('currentGameId', id);
     });
 
