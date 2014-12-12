@@ -42,7 +42,7 @@ Template.onecaption.helpers({
     return hasDownVoted(userId, this._id);
   },
   ownCaption: function() {
-    return ownCaptionCheck(this._id); 
+    return ownCaptionCheck(this._id);
   }
 });
 
@@ -82,9 +82,9 @@ Template.onecaption.events({
     var downVoteCheck = hasDownVoted(userId, captionId);
     var ownCaption = ownCaptionCheck(captionId);
     var voteType = evt.target.id;
-    
+
     console.log(voteType);
-    if(voteType === 'upvote') {
+    if (voteType === 'upvote') {
       // Clicked upvote button
       if (!ownCaption) {
         if (upVoteCheck) {
@@ -98,7 +98,7 @@ Template.onecaption.events({
           removeDownVote(captionId, userId);
           upVote(captionId, userId);
         }
-      } 
+      }
     } else {
       // Clicked downvote
       if (!ownCaption) {
