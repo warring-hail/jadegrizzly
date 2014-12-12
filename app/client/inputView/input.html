@@ -1,25 +1,20 @@
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
 <template name="input">
-  <h1>Create a caption</h1>
-
-  <div class="photo-Container">
-    <!-- Can view active photo -->
-    {{#with photos}}
-      <img src="/img/{{path}}"/>
-    {{/with}}
-  </div>
-
-  <div class="caption-container">
-    <!-- Can submit their caption -->
-    <form class="new-caption">
-      <!-- Can enter a caption for a photo -->
-      <input type="text" name="caption" placeholder="Enter photo caption"/><br>
-      <!-- Can enter their name -->
-      <input type="text" name="name" placeholder="Enter your name"/><br>
-      <button type="submit" style="display:none"></button>
-    </form>
-  </div>
-
-  <div class="footer">
-    <button class="navigate-vote">Vote</button>
+  <div class="container">
+    <h2>Create caption</h2>
+    <div class="input">
+      {{#with photos}}
+        <img class="photo" src="/img/{{path}}"/>
+      {{/with}}
+      <form class="new-caption">
+          <textarea name="caption" maxlength="140" placeholder="Enter caption"></textarea>
+          <input type="text" name="name" placeholder="Enter name (optional)" />
+        <button class="navigate-vote button radius alert">Submit</button>
+        <button type="submit" style="display:none"></button>
+      </form>
+    </div>
   </div>
 </template>

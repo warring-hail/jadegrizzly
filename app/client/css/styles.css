@@ -1,30 +1,74 @@
 body {
   padding: 20px;
-  font-family: 'Open Sans', sans-serif;
-
 }
 
-h1 {
-  font-size: 2em;
-  font-weight: bold;
-}
-
-h2 {
-  font-size: 1.6em;
-  font-weight: bold;
-}
-
-h3 {
-  font-size: 1.17em;
-  font-weight: bold;
-}
-
+/* GENERAL */
 .photo {
   max-width:90%;
   max-height:90%;
-  margin-top: 15px;
+  margin-top: 10px;
+  margin-bottom: 15px;
 }
 
+.container {
+  text-align: center;
+  width: 280px;
+  margin-top: 20px;
+  margin: auto;
+}
+
+/* INPUT VIEW */
+
+.input {
+  padding: 10px;
+  background-color: #E3F2FD;
+  border: 1px solid #BBDEFB;
+  border-radius: 5px;
+  margin: 0 0 10px 0;
+}
+
+  .input textarea {
+    resize: none !important;
+  }
+
+  .new-caption {
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
+/* VOTE VIEW */
+
+  .captions td {
+    font-size: .7em;
+    text-align: left;
+  }
+  
+  td.voteButtons {
+    text-align: right;
+  }
+
+  .voteButton {
+    width: 20px;
+    height: 20px;
+    padding: 12px;
+    font-size: 1em;
+  }
+
+  #downvote {
+    margin-left: 10px;
+  }
+
+  i.voteButton.disabled {
+    background-color: #99D1E3 !important; 
+  }
+
+  i.ownCaption {
+    background-color: #cccccc !important;
+  }
+
+   
+
+/* RESULTS VIEW */
 .results {
   text-align: center;
   margin-top: 20px;
@@ -34,15 +78,15 @@ h3 {
 
   .results .winner {
     padding: 10px;
-  
     background-color: #E3F2FD;
     border: 1px solid #BBDEFB;
     border-radius: 5px;
     margin: 0 0 10px 0;
   }
 
-  .winner h3 {
-    margin-top: 10px;
+  .winner h6 {
+    font-size: .9em;
+    font-weight: bold;
   }
 
   .winner p {
@@ -59,11 +103,6 @@ h3 {
 
     .runnersUp table {
       width: 100%;
-    }
-
-    .runnersUp th {
-      font-weight: bold;
-      font-size: .9em;
     }
 
     .runnersUp td {
