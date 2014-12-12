@@ -3,9 +3,9 @@ Template.vote.helpers({
     return Captions.find({});
   },
   getImage: function() {
-    var picId = Games.findOne();
+    var picId = Games.findOne().photoID;
     if (picId) {
-      return Photos.findOne({photoID: picId.photoID});
+      return Photos.findOne({photoID: picId});
     }
   }
 });
