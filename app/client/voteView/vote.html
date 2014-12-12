@@ -1,19 +1,21 @@
 <template name="vote">
-  <div class="vote container">
-    <h2>Cast your votes</h2>
-      {{#with getImage}}
-        <img src="/img/{{path}}" class="photo">
-      {{/with}}
+  <div class="container">
+    <div class="vote">
+      <h2>Cast your votes</h2>
+        {{#with getImage}}
+          <img src="/img/{{path}}" class="photo">
+        {{/with}}
+    </div>
     <div class="captions">
-    <table>
-      <tr>
-        <th>Caption</th>
-        <th></th>
-      </tr>
-      {{#each captions}}
-        {{> onecaption}}
-      {{/each}}
-    </table>
+      <table>
+        <tr>
+          <th>Caption</th>
+          <th></th>
+        </tr>
+        {{#each captions}}
+          {{> onecaption}}
+        {{/each}}
+      </table>
     </div>
   </div>
 </template>

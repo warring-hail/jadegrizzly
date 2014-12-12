@@ -81,7 +81,7 @@ Template.onecaption.events({
     var upVoteCheck = hasUpVoted(userId, captionId);
     var downVoteCheck = hasDownVoted(userId, captionId);
     var ownCaption = ownCaptionCheck(captionId);
-    var voteType = event.target.id;
+    var voteType = evt.target.id;
     
     console.log(voteType);
     if(voteType === 'upvote') {

@@ -2,14 +2,13 @@ body {
   padding: 20px;
 }
 
+/* GENERAL */
 .photo {
   max-width:90%;
   max-height:90%;
   margin-top: 10px;
   margin-bottom: 15px;
 }
-
-/* INPUT VIEW */
 
 .container {
   text-align: center;
@@ -18,21 +17,34 @@ body {
   margin: auto;
 }
 
+/* INPUT VIEW */
+
+.input {
+  padding: 10px;
+  background-color: #E3F2FD;
+  border: 1px solid #BBDEFB;
+  border-radius: 5px;
+  margin: 0 0 10px 0;
+}
+
+  .input textarea {
+    resize: none !important;
+  }
+
+  .new-caption {
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
 /* VOTE VIEW */
 
-.vote {
-  text-align: center;
-  width: 280px;
-  margin-top: 20px;
-  margin: auto;
-}
-  .vote td {
-    font-size: .8em;
+  .captions td {
+    font-size: .7em;
     text-align: left;
   }
   
   td.voteButtons {
-    text-align: center;
+    text-align: right;
   }
 
   .voteButton {
@@ -40,7 +52,10 @@ body {
     height: 20px;
     padding: 12px;
     font-size: 1em;
-    margin: 7px;
+  }
+
+  #downvote {
+    margin-left: 10px;
   }
 
   i.voteButton.disabled {
