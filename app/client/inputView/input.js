@@ -32,7 +32,6 @@ Template.input.helpers({
 
 Template.input.events({
   'submit .new-caption': function(event) {
-    console.log('submitted', 'clicked')
     var caption = event.target.caption.value;
     var name = event.target.name.value;
 
@@ -53,8 +52,10 @@ Template.input.events({
 
     //disable ability to resubmit
     $('input').prop('disabled', true);
-    $('button').html('Please wait');
+    $('textarea').prop('disabled', true);
     $('button').prop('disabled', true);
+    $('button').html('Please wait');
+    $('div.input').append('<p class="wait">Waiting for all submissions</p>');
 
     // Prevent default form submit
     return false;

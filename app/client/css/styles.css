@@ -27,14 +27,19 @@ body {
   margin: 0 0 10px 0;
 }
 
-  .input textarea {
-    resize: none !important;
-  }
+.input textarea {
+  resize: none !important;
+}
 
-  .new-caption {
-    padding-bottom: 0;
-    margin-bottom: 0;
-  }
+.new-caption {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.wait {
+  font-style: italic;
+  color: #FF0000;
+}
 
 /* VOTE VIEW */
 
@@ -42,7 +47,7 @@ body {
     font-size: .7em;
     text-align: left;
   }
-  
+
   td.voteButtons {
     text-align: right;
   }
@@ -59,14 +64,14 @@ body {
   }
 
   i.voteButton.disabled {
-    background-color: #99D1E3 !important; 
+    background-color: #99D1E3 !important;
   }
 
   i.ownCaption {
     background-color: #cccccc !important;
   }
 
-   
+
 
 /* RESULTS VIEW */
 .results {
