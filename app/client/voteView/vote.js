@@ -1,6 +1,5 @@
 Template.vote.helpers({
   captions: function() {
-    Captions.find({}).fetch();
     return Captions.find({});
   },
   getImage: function() {
@@ -83,7 +82,6 @@ Template.onecaption.events({
     var ownCaption = ownCaptionCheck(captionId);
     var voteType = evt.target.id;
 
-    console.log(voteType);
     if (voteType === 'upvote') {
       // Clicked upvote button
       if (!ownCaption) {
