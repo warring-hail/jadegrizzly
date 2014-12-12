@@ -131,9 +131,7 @@ Games.allow({
 
 Meteor.methods({
   playersInsert: function(doc) {
-    Players.insert(doc, function(err, id) {
-      Session.set('currentPlayerID', id);
-    });
+    Players.insert(doc);
   },
 
   photosUpsert: function(id, doc) {
@@ -144,9 +142,9 @@ Meteor.methods({
     Captions.upsert(id, doc);
   },
 
-  captionsInsert: function(caption) {
+  captionsInsert: function(caption, id) {
     Captions.insert({
-      playerID: Session.get('currentPlayerID'),
+      playerID: id,
       text: caption
     });
   },
