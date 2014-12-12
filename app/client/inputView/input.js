@@ -7,17 +7,23 @@ Captions = new Meteor.Collection('captions');
 Games = new Meteor.Collection('games');
 
 var playerID = '';
+var gameID = Games.findOne()._id;
 
-//generate playerID
-(function() {
-  var count = 10;
-  while (count > 0) {
-    playerID += Math.floor(Math.random() * 10);
-    count -= 1;
-  }
-})();
+//set playerID if new player; get playerID if old player
+if (!sessionStorage.getItem('currentPlayerID')) {
+  (function() {
+    var count = 10;
+    while (count > 0) {
+      playerID += Math.floor(Math.random() * 10);
+      count -= 1;
+    }
+  })();
+  sessionStorage.setItem('currentPlayerID', playerID);
+} else {
+  playerID = sessionStorage.getItem('currentPlayerID');
+}
+console.log('playerID:', playerID)
 
-Session.set('currentPlayerID', playerID);
 
 Template.input.helpers({
   photos: function() {
@@ -32,32 +38,79 @@ Template.input.helpers({
 
 Template.input.events({
   'submit .new-caption': function(event) {
-    var caption = event.target.caption.value;
-    var name = event.target.name.value;
+    var captions = Captions.find().fetch();
+    console.log(captions)
+    var found = false;
 
-    var playerObj = {
-      playerID: playerID,
-      name: name
-    };
+    _.each(captions, function(caption){
+      if (caption.playerID === playerID) {
+        found = true;
+      }
+    });
 
-    //insert player into the Player collection
-    Meteor.call('playersInsert', playerObj);
+    var game = Games.findOne();
+    var atCorrectState = true;
+    console.log(game)
+    if (game) {
+      var stateID = game.stateID;
+      console.log(stateID)
+      if (stateID !== 1) {
+        atCorrectState = false;
+      }
+    }
 
-    //insert new caption into the Caption collection
-    Meteor.call('captionsInsert', caption, playerID);
-
-    //reset caption input field
-    event.target.caption.value = '';
-    event.target.name.value = '';
-
+    console.log(found, atCorrectState)
+    if (found === true && atCorrectState === true) {
+      console.log('trying to cheat the game')
     //disable ability to resubmit
-    $('input').prop('disabled', true);
-    $('textarea').prop('disabled', true);
-    $('button').prop('disabled', true);
-    $('button').html('Please wait');
-    $('div.input').append('<p class="wait">Waiting for all submissions...</p>');
+      $('input').prop('disabled', true);
+      $('textarea').prop('disabled', true);
+      $('button').prop('disabled', true);
+      $('button').html('Please wait');
+      $('div.input').append('<p class="wait">You already submitted a caption<br>Waiting for all submissions</p>');
+      return false;
+    } else if (found === true && atCorrectState === false) {
+      $('input').prop('disabled', true);
+      $('textarea').prop('disabled', true);
+      $('button').prop('disabled', true);
+      $('button').html('Please wait');
+      $('div.input').append('<p class="wait">You already submitted a caption<br>Waiting for all submissions</p>');
 
-    // Prevent default form submit
-    return false;
+      setTimeout(function(){
+        //called from global master file
+        stateRedirect(stateID);
+      }, 1500);
+
+      return false;
+    } else {
+      console.log('first pass')
+      var caption = event.target.caption.value;
+      var name = event.target.name.value;
+
+      var playerObj = {
+        playerID: playerID,
+        name: name
+      };
+
+      //insert player into the Player collection
+      Meteor.call('playersInsert', playerObj);
+
+      //insert new caption into the Caption collection
+      Meteor.call('captionsInsert', caption, playerID);
+
+      //reset caption input field
+      event.target.caption.value = '';
+      event.target.name.value = '';
+
+      //disable ability to resubmit
+      $('input').prop('disabled', true);
+      $('textarea').prop('disabled', true);
+      $('button').prop('disabled', true);
+      $('button').html('Please wait');
+      $('div.input').append('<p class="wait">Waiting for all submissions</p>');
+
+      // Prevent default form submit
+      return false;
+    }
   }
 });
