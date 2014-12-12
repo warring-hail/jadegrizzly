@@ -18,6 +18,10 @@ Router.route('/navigate', function() {
 });
 
 // player views
+Router.route('/pending', function() {
+  this.render('pending');
+});
+
 Router.route('/input', function() {
   this.render('input');
 });

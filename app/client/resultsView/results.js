@@ -1,5 +1,5 @@
 var getScore = function(caption) {
-  return caption.upvoteCount - caption.downvoteCount ;
+  return caption.upvoteCount - caption.downvoteCount;
 };
 
 var sortCaptions = function(a, b) {
@@ -8,7 +8,9 @@ var sortCaptions = function(a, b) {
 
 var getWinners = function() {
   var captions = Captions.find({}).fetch();
+  console.log('before sort', captions);
   captions.sort(sortCaptions);
+  console.log('after sort', captions);
   return captions;
 };
 
@@ -38,5 +40,12 @@ Template.results.helpers({
     var photoID = photo[0].photoID;
     var photoPath = Photos.find({photoID:photoID}).fetch();
     return '/img/' + photoPath[0].path;
+  }
+});
+
+Template.runnerUp.helpers({
+  score: function() {
+    console.log('upvotecount', this.upvoteCount);
+    return this.upvoteCount - this.downvoteCount;
   }
 });

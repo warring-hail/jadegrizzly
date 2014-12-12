@@ -50,6 +50,7 @@ mizzao:autocomplete@0.4.10
 mizzao:bootstrap-3@3.3.1_1
 mobile-status-bar@1.0.1
 mongo@1.0.9
+mrt:foundation-5@5.0.3
 npm-bcrypt@0.7.7
 observe-sequence@1.0.3
 ordered-dict@1.0.1
