@@ -7,7 +7,7 @@
     <div class="winner">
     <h2>We have a winner!</h2>
     <img src="{{photoPath}}" class="photo"/>
-     <h4>{{winner.text}}</h4>
+     <h6>{{winner.text}}</h6>
      <p>
      By <strong>{{winner.name}}</strong> with {{winner.score}} votes
      </p>
@@ -29,7 +29,7 @@
 
 <template name="runnerUp">
     <tr>
-      <td>{{upvoteCount}}</td>
+      <td>{{score}}</td>
       <td class="caption"><span class="name">By {{name}}</span> {{text}}</td>
     </tr>
 </template>

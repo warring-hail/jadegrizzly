@@ -60,7 +60,8 @@ body {
     margin: 0 0 10px 0;
   }
 
-  .winner h4 {
+  .winner h6 {
+    font-size: .9em;
     font-weight: bold;
   }
 

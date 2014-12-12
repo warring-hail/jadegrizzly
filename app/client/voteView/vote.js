@@ -76,7 +76,7 @@ var removeDownVote = function(id, userId) {
 
 Template.onecaption.events({
   'click i.voteButton': function(evt, template) {
-    var userId = Session.get('playerID');
+    var userId = Session.get('currentPlayerID');
     var captionId = this._id;
     var upVoteCheck = hasUpVoted(userId, captionId);
     var downVoteCheck = hasDownVoted(userId, captionId);
