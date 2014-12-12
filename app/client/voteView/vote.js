@@ -4,7 +4,10 @@ Template.vote.helpers({
   },
   getImage: function() {
     var picId = Games.findOne();
-    return Photos.findOne({photoID: picId.photoID});
+    if (picId) {
+      return Photos.findOne({photoID: picId.photoID});
+    }
+    return null;
   }
 });
 
