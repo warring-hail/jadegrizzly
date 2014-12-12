@@ -35,6 +35,7 @@
         "Players",
         "Router",
         "Session",
-        "Template"
+        "Template",
+        "Tracker"
     ]
 }
