@@ -75,42 +75,45 @@ var removeDownVote = function(id, userId) {
 
 Template.onecaption.events({
   'click i.voteButton': function(evt, template) {
-    var userId = Session.get('currentPlayerID');
-    var captionId = this._id;
-    var upVoteCheck = hasUpVoted(userId, captionId);
-    var downVoteCheck = hasDownVoted(userId, captionId);
-    var ownCaption = ownCaptionCheck(captionId);
-    var voteType = evt.target.id;
+    var stateCheck = Games.findOne().stateID;
+    if (stateCheck === 2) {
+      var userId = Session.get('currentPlayerID');
+      var captionId = this._id;
+      var upVoteCheck = hasUpVoted(userId, captionId);
+      var downVoteCheck = hasDownVoted(userId, captionId);
+      var ownCaption = ownCaptionCheck(captionId);
+      var voteType = evt.target.id;
 
-    if (voteType === 'upvote') {
-      // Clicked upvote button
-      if (!ownCaption) {
-        if (upVoteCheck) {
-          // Has upvoted already, but not downvoted
-          removeUpVote(captionId, userId);
-        } else if (!downVoteCheck) {
-          // Has not downvoted or upvoted
-          upVote(captionId, userId);
-        } else {
-          // Has already downvoted, but not upvoted
-          removeDownVote(captionId, userId);
-          upVote(captionId, userId);
+      if (voteType === 'upvote') {
+        // Clicked upvote button
+        if (!ownCaption) {
+          if (upVoteCheck) {
+            // Has upvoted already, but not downvoted
+            removeUpVote(captionId, userId);
+          } else if (!downVoteCheck) {
+            // Has not downvoted or upvoted
+            upVote(captionId, userId);
+          } else {
+            // Has already downvoted, but not upvoted
+            removeDownVote(captionId, userId);
+            upVote(captionId, userId);
+          }
         }
-      }
-    } else {
-      // Clicked downvote
-      if (!ownCaption) {
-        if (downVoteCheck) {
-          // Has downvoted already
-          removeDownVote(captionId, userId);
-        } else if (!upVoteCheck) {
-          // Has not upvoted, but has downvoted
-          downVote(captionId, userId);
-        }
-        else {
-          // Has upvoted, but not downvoted
-          removeUpVote(captionId, userId);
-          downVote(captionId, userId);
+      } else {
+        // Clicked downvote
+        if (!ownCaption) {
+          if (downVoteCheck) {
+            // Has downvoted already
+            removeDownVote(captionId, userId);
+          } else if (!upVoteCheck) {
+            // Has not upvoted, but has downvoted
+            downVote(captionId, userId);
+          }
+          else {
+            // Has upvoted, but not downvoted
+            removeUpVote(captionId, userId);
+            downVote(captionId, userId);
+          }
         }
       }
     }
