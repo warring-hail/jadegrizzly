@@ -45,7 +45,11 @@ Template.results.helpers({
 
 Template.runnerUp.helpers({
   score: function() {
-    console.log('upvotecount', this.upvoteCount);
-    return this.upvoteCount - this.downvoteCount;
+    var score = this.upvoteCount - this.downvoteCount;
+    if (isNaN(score) || score < 0) {
+      return 0;
+    } else {
+      return score;
+    }
   }
 });
