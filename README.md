@@ -1,5 +1,5 @@
 # Snapshot Olympics
-[![Build Status](https://travis-ci.org/warring-hail/jadegrizzly.png)](https://travis-ci.org/warring-hail/jadegrizzly)
+[![Build Status](https://travis-ci.org/warring-hail/jadegrizzly.png)](https://travis-ci.org/warring-hail/jadegrizzly) [![devDependency Status](https://david-dm.org/warring-hail/jadegrizzly/dev-status.svg)](https://david-dm.org/warring-hail/jadegrizzly#info=devDependencies)
 
 > Organized photo scavenger hunts for friends, family and more.
 
