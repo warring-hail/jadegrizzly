@@ -1,13 +1,17 @@
+/* global stateRedirect: true */
+stateRedirect = function(num) {
+  var STATE_PATHS = ['pending', 'input', 'vote', 'results'];
+  Router.go('/' + STATE_PATHS[num]);
+};
+
 // set up forced routing for users based off of the Game state status in the collection
 Tracker.autorun(function() {
-  var gameData = Games.findOne();
+  var stateNum = Games.findOne().stateID;
   var host = Session.get('host');
-  var statePaths = ['pending', 'input', 'vote', 'results'];
 
-  if (gameData) {
-    var stateNum = gameData.stateID;
+  if (stateNum) {
     if (!host) {
-      Router.go('/' + statePaths[stateNum]);
+      stateRedirect(stateNum);
     }
   }
 });

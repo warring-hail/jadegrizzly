@@ -4,7 +4,9 @@ Template.vote.helpers({
   },
   getImage: function() {
     var picId = Games.findOne();
-    return Photos.findOne({photoID: picId.photoID});
+    if (picId) {
+      return Photos.findOne({photoID: picId.photoID});
+    }
   }
 });
 
@@ -75,10 +77,9 @@ var removeDownVote = function(id, userId) {
 
 Template.onecaption.events({
   'click i.voteButton': function(evt, template) {
-    var stateCheck = Games.findOne().stateID;
-    if (stateCheck !== 2) {
-      var statePaths = ['pending', 'input', 'vote', 'results'];
-      Router.go('/' + statePaths[stateCheck]);
+    var stateNum = Games.findOne().stateID;
+    if (stateNum !== 2) {
+      stateRedirect(stateNum);
     } else {
       var userId = Session.get('currentPlayerID');
       var captionId = this._id;
