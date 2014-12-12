@@ -6,12 +6,12 @@ stateRedirect = function(num) {
 
 // set up forced routing for users based off of the Game state status in the collection
 Tracker.autorun(function() {
-  var stateNum = Games.findOne().stateID;
+  var gameInfo = Games.findOne();
   var host = Session.get('host');
 
-  if (stateNum) {
+  if (gameInfo) {
     if (!host) {
-      stateRedirect(stateNum);
+      stateRedirect(gameInfo.stateID);
     }
   }
 });

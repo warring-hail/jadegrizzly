@@ -3,9 +3,9 @@ Template.vote.helpers({
     return Captions.find({});
   },
   getImage: function() {
-    var picId = Games.findOne().photoID;
-    if (picId) {
-      return Photos.findOne({photoID: picId});
+    var gameInfo = Games.findOne();
+    if (gameInfo) {
+      return Photos.findOne({photoID: gameInfo.photoID});
     }
   }
 });
@@ -52,25 +52,21 @@ Template.onecaption.helpers({
 var upVote = function(id, userId) {
   Meteor.call('captionsUpsert', id, {$inc: {upvoteCount: 1}});
   Meteor.call('captionsUpsert', id, {$push: {upvoteUsers: userId}});
-  console.log('upVoted');
 };
 
 var removeUpVote = function(id, userId) {
   Meteor.call('captionsUpsert', id, {$inc: {upvoteCount: -1}});
   Meteor.call('captionsUpsert', id, {$pull: {upvoteUsers: userId}});
-  console.log('removed upvote');
 };
 
 var downVote = function(id, userId) {
   Meteor.call('captionsUpsert', id, {$inc: {downvoteCount: 1}});
   Meteor.call('captionsUpsert', id, {$push: {downvoteUsers: userId}});
-  console.log('downvoted');
 };
 
 var removeDownVote = function(id, userId) {
   Meteor.call('captionsUpsert', id, {$inc: {downvoteCount: -1}});
   Meteor.call('captionsUpsert', id, {$pull: {downvoteUsers: userId}});
-  console.log('removed downvote');
 };
 
 // Conditionals for handling voting clicks
