@@ -18,8 +18,6 @@ var playerID = '';
   }
 })();
 
-Session.set('PlayerID', playerID);
-
 Template.input.helpers({
   photos: function() {
     var games = Games.find({}).fetch();
@@ -33,10 +31,17 @@ Template.input.events({
     var caption = event.target.caption.value;
     var name = event.target.name.value;
 
-    Session.set('name', name);
+    var playerObj = {
+      playerID: playerID,
+      name: name
+    };
 
-    //insert new caption to the Caption collection
-    Meteor.call('captionsInsert', Session.get('PlayerID'), caption);
+    //insert player into the Player collection
+    Meteor.call('playersInsert', playerObj);
+
+    //insert new caption into the Caption collection
+    Meteor.call('captionsInsert', caption);
+
 
     //reset caption input field
     event.target.caption.value = '';
@@ -47,19 +52,6 @@ Template.input.events({
   },
 
   'click .navigate-vote': function(event) {
-    var games = Games.find({}).fetch();
-
-    //for testing; remove once state connected
-    Meteor.call('gamesUpsert', games[0]._id, {
-        $set: {stateID: '1'}
-    });
-    //=======================================
-
-    if (games[0].stateID === '1') {
-      Meteor.call('gamesUpsert', games[0]._id, {
-        $set: {stateID: '2'}
-      });
-      Router.go('/vote');
-    }
+    Router.go('/vote');
   }
 });
