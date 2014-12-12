@@ -17,6 +17,8 @@ var playerID = '';
   }
 })();
 
+Session.set('currentPlayerID', playerID);
+
 Template.input.helpers({
   photos: function() {
     var game = Games.findOne();
@@ -42,7 +44,7 @@ Template.input.events({
     Meteor.call('playersInsert', playerObj);
 
     //insert new caption into the Caption collection
-    Meteor.call('captionsInsert', caption);
+    Meteor.call('captionsInsert', caption, playerID);
 
     //reset caption input field
     event.target.caption.value = '';
