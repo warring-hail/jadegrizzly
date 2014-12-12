@@ -75,11 +75,6 @@ Meteor.startup(function() {
     photoID: '2',
     path: 'img3.jpg'
   });
-
-  Games.insert({
-    stateID: '0',
-    photoID: '1'
-  });
 });
 
 // Restrict DB Access.  Currently allowing all types of actions.
