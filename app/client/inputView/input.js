@@ -32,6 +32,7 @@ Template.input.helpers({
 
 Template.input.events({
   'submit .new-caption': function(event) {
+    console.log('submitted', 'clicked')
     var caption = event.target.caption.value;
     var name = event.target.name.value;
 
@@ -50,11 +51,12 @@ Template.input.events({
     event.target.caption.value = '';
     event.target.name.value = '';
 
+    //disable ability to resubmit
+    $('input').prop('disabled', true);
+    $('button').html('Please wait');
+    $('button').prop('disabled', true);
+
     // Prevent default form submit
     return false;
-  },
-
-  'click .navigate-vote': function(event) {
-    Router.go('/vote');
   }
 });
