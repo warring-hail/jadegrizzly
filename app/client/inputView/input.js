@@ -6,6 +6,11 @@ Photos = new Meteor.Collection('photos');
 Captions = new Meteor.Collection('captions');
 Games = new Meteor.Collection('games');
 
+var stateRedirect = function(num) {
+  var STATE_PATHS = ['pending', 'input', 'vote', 'results'];
+  Router.go('/' + STATE_PATHS[num]);
+};
+
 var playerID = '';
 var gameID = Games.findOne()._id;
 
@@ -22,8 +27,6 @@ if (!sessionStorage.getItem('currentPlayerID')) {
 } else {
   playerID = sessionStorage.getItem('currentPlayerID');
 }
-console.log('playerID:', playerID)
-
 
 Template.input.helpers({
   photos: function() {
@@ -39,10 +42,9 @@ Template.input.helpers({
 Template.input.events({
   'submit .new-caption': function(event) {
     var captions = Captions.find().fetch();
-    console.log(captions)
     var found = false;
 
-    _.each(captions, function(caption){
+    _.each(captions, function(caption) {
       if (caption.playerID === playerID) {
         found = true;
       }
@@ -50,18 +52,14 @@ Template.input.events({
 
     var game = Games.findOne();
     var atCorrectState = true;
-    console.log(game)
     if (game) {
       var stateID = game.stateID;
-      console.log(stateID)
       if (stateID !== 1) {
         atCorrectState = false;
       }
     }
 
-    console.log(found, atCorrectState)
     if (found === true && atCorrectState === true) {
-      console.log('trying to cheat the game')
     //disable ability to resubmit
       $('input').prop('disabled', true);
       $('textarea').prop('disabled', true);
@@ -76,14 +74,13 @@ Template.input.events({
       $('button').html('Please wait');
       $('div.input').append('<p class="wait">You already submitted a caption<br>Waiting for all submissions</p>');
 
-      setTimeout(function(){
+      setTimeout(function() {
         //called from global master file
         stateRedirect(stateID);
       }, 1500);
 
       return false;
     } else {
-      console.log('first pass')
       var caption = event.target.caption.value;
       var name = event.target.name.value;
 
