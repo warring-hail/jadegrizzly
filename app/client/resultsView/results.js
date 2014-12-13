@@ -1,7 +1,7 @@
 // Get the score for the caption and handle edge case if values don't exist
 var getScore = function(caption) {
-  var upvoteCount = caption.upVote || 0;
-  var downvoteCount = caption.downVote || 0;
+  var upvoteCount = caption.upvoteCount || 0;
+  var downvoteCount = caption.downvoteCount || 0;
   return upvoteCount - downvoteCount;
 };
 
