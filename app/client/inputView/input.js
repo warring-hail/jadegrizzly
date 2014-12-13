@@ -6,7 +6,7 @@ Photos = new Meteor.Collection('photos');
 Captions = new Meteor.Collection('captions');
 Games = new Meteor.Collection('games');
 
-var disableSubmit = function(){
+var disableSubmit = function() {
   //disable ability to resubmit
   $('field').prop('disabled', true);
   $('button').html('Please wait');
@@ -15,7 +15,7 @@ var disableSubmit = function(){
   return false;
 };
 
-var disableRepeat = function(){
+var disableRepeat = function() {
   $('field').prop('disabled', true);
   $('button').html('Please wait');
   $('div.input').append('<p class="wait">You already submitted a caption<br>Waiting for all submissions</p>');
@@ -58,7 +58,8 @@ Template.input.events({
     var found = Boolean(_.findWhere(captions, {playerID: playerID}));
 
     var game = Games.findOne();
-    var atCorrectState = (game.stateID === 1);
+    var stateID = game.stateID;
+    var atCorrectState = (!game || game.stateID === 1);
 
     if (found && atCorrectState) {
       //disable ability to resubmit
