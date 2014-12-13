@@ -36,7 +36,6 @@
         "Router",
         "Session",
         "Template",
-        "Tracker",
-        "stateRedirect"
+        "Tracker"
     ]
 }
