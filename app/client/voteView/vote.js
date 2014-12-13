@@ -23,7 +23,7 @@ var hasDownVoted = function(voterId, captionId) {
 };
 
 var ownCaptionCheck = function(captionId) {
-  var userId = Session.get('currentPlayerID');
+  var userId = sessionStorage.getItem('currentPlayerID');
   var caption = Captions.findOne({_id: captionId});
 
   return userId === caption.playerID;
@@ -35,11 +35,11 @@ var ownCaptionCheck = function(captionId) {
 
 Template.onecaption.helpers({
   upStyle: function() {
-    var userId = Session.get('currentPlayerID');
+    var userId = sessionStorage.getItem('currentPlayerID');
     return hasUpVoted(userId, this._id);
   },
   downStyle: function() {
-    var userId = Session.get('currentPlayerID');
+    var userId = sessionStorage.getItem('currentPlayerID');
     return hasDownVoted(userId, this._id);
   },
   ownCaption: function() {
@@ -77,7 +77,7 @@ Template.onecaption.events({
     if (stateNum !== 2) {
       Router.go('/s' + stateNum);
     } else {
-      var userId = Session.get('currentPlayerID');
+      var userId = sessionStorage.getItem('currentPlayerID');
       var captionId = this._id;
       var upVoteCheck = hasUpVoted(userId, captionId);
       var downVoteCheck = hasDownVoted(userId, captionId);
@@ -86,7 +86,7 @@ Template.onecaption.events({
 
       if (voteType === 'upvote') {
         // Clicked upvote button
-        if (!ownCaption) {
+        if (userId && !ownCaption) {
           if (upVoteCheck) {
             // Has upvoted already, but not downvoted
             removeUpVote(captionId, userId);
@@ -101,7 +101,7 @@ Template.onecaption.events({
         }
       } else {
         // Clicked downvote
-        if (!ownCaption) {
+        if (userId && !ownCaption) {
           if (downVoteCheck) {
             // Has downvoted already
             removeDownVote(captionId, userId);
