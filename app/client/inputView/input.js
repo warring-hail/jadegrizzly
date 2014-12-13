@@ -6,6 +6,22 @@ Photos = new Meteor.Collection('photos');
 Captions = new Meteor.Collection('captions');
 Games = new Meteor.Collection('games');
 
+var disableSubmit = function(){
+  //disable ability to resubmit
+  $('field').prop('disabled', true);
+  $('button').html('Please wait');
+  $('div.input').append('<p class="wait">Waiting for all submissions</p>');
+  // Prevent default form submit
+  return false;
+};
+
+var disableRepeat = function(){
+  $('field').prop('disabled', true);
+  $('button').html('Please wait');
+  $('div.input').append('<p class="wait">You already submitted a caption<br>Waiting for all submissions</p>');
+  return false;
+};
+
 var stateRedirect = function(num) {
   var STATE_PATHS = ['pending', 'input', 'vote', 'results'];
   Router.go('/' + STATE_PATHS[num]);
@@ -45,22 +61,14 @@ Template.input.events({
     var atCorrectState = (game.stateID === 1);
 
     if (found && atCorrectState) {
-    //disable ability to resubmit
-      $('field').prop('disabled', true);
-      $('button').html('Please wait');
-      $('div.input').append('<p class="wait">You already submitted a caption<br>Waiting for all submissions</p>');
-      return false;
+      //disable ability to resubmit
+      disableRepeat();
     } else if (found && !atCorrectState) {
-      $('field').prop('disabled', true);
-      $('button').html('Please wait');
-      $('div.input').append('<p class="wait">You already submitted a caption<br>Waiting for all submissions</p>');
+      disableRepeat();
 
       setTimeout(function() {
-        //called from global master file
         stateRedirect(stateID);
       }, 1500);
-
-      return false;
     } else {
       var caption = event.target.caption.value;
       var name = event.target.name.value;
@@ -80,13 +88,7 @@ Template.input.events({
       event.target.caption.value = '';
       event.target.name.value = '';
 
-      //disable ability to resubmit
-      $('field').prop('disabled', true);
-      $('button').html('Please wait');
-      $('div.input').append('<p class="wait">Waiting for all submissions</p>');
-
-      // Prevent default form submit
-      return false;
+      disableSubmit();
     }
   }
 });
