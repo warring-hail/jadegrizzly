@@ -1,13 +1,7 @@
 // Get the score for the caption and handle edge case if values don't exist
 var getScore = function(caption) {
-  var upvoteCount = 0;
-  var downvoteCount = 0;
-  if (caption.upvoteCount) {
-    upvoteCount = caption.upvoteCount;
-  }
-  if (caption.downvoteCount) {
-    downvoteCount = caption.downvoteCount;
-  }
+  var upvoteCount = caption.upVote || 0;
+  var downvoteCount = caption.downVote || 0;
   return upvoteCount - downvoteCount;
 };
 
@@ -16,7 +10,7 @@ var sortCaptions = function(a, b) {
   return getScore(b) - getScore(a);
 };
 
-// Return the top five captions by number of votes
+// Return all the captions, sorted by number of votes
 var getWinners = function() {
   var captions = Captions.find({}).fetch();
   captions.sort(sortCaptions);
@@ -26,9 +20,8 @@ var getWinners = function() {
 // Use the playerID to find the name of the player
 var getName = function(playerID) {
   var player = Players.findOne({playerID:playerID});
-  var name = player.name;
-  if (name) {
-    return name;
+  if (player) {
+    return player.name ? player.name : 'Anonymous';
   }
   return 'Anonymous';
 };
