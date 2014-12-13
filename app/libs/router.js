@@ -22,16 +22,32 @@ Router.route('/pending', function() {
   this.render('pending');
 });
 
+Router.route('/s0', function() {
+  Router.go('/pending');
+});
+
 Router.route('/input', function() {
   this.render('input');
+});
+
+Router.route('/s1', function() {
+  Router.go('/input');
 });
 
 Router.route('/vote', function() {
   this.render('vote');
 });
 
+Router.route('/s2', function() {
+  Router.go('/vote');
+});
+
 Router.route('/results', function() {
   this.render('results');
+});
+
+Router.route('/s3', function() {
+  Router.go('/results');
 });
 
 // default route for invalid URL
