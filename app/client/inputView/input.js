@@ -15,13 +15,11 @@ var playerID = '';
 
 //set playerID if new player; get playerID if old player
 if (!sessionStorage.getItem('currentPlayerID')) {
-  (function() {
-    var count = 10;
-    while (count > 0) {
-      playerID += Math.floor(Math.random() * 10);
-      count -= 1;
-    }
-  })();
+  var count = 10;
+  while (count > 0) {
+    playerID += Math.floor(Math.random() * 10);
+    count -= 1;
+  }
   sessionStorage.setItem('currentPlayerID', playerID);
 } else {
   playerID = sessionStorage.getItem('currentPlayerID');
@@ -41,35 +39,19 @@ Template.input.helpers({
 Template.input.events({
   'submit .new-caption': function(event) {
     var captions = Captions.find().fetch();
-    var found = false;
-
-    _.each(captions, function(caption) {
-      if (caption.playerID === playerID) {
-        found = true;
-      }
-    });
+    var found = Boolean(_.findWhere(captions, {playerID: playerID}));
 
     var game = Games.findOne();
-    var atCorrectState = true;
-    if (game) {
-      var stateID = game.stateID;
-      if (stateID !== 1) {
-        atCorrectState = false;
-      }
-    }
+    var atCorrectState = (game.stateID === 1);
 
-    if (found === true && atCorrectState === true) {
+    if (found && atCorrectState) {
     //disable ability to resubmit
-      $('input').prop('disabled', true);
-      $('textarea').prop('disabled', true);
-      $('button').prop('disabled', true);
+      $('field').prop('disabled', true);
       $('button').html('Please wait');
       $('div.input').append('<p class="wait">You already submitted a caption<br>Waiting for all submissions</p>');
       return false;
-    } else if (found === true && atCorrectState === false) {
-      $('input').prop('disabled', true);
-      $('textarea').prop('disabled', true);
-      $('button').prop('disabled', true);
+    } else if (found && !atCorrectState) {
+      $('field').prop('disabled', true);
       $('button').html('Please wait');
       $('div.input').append('<p class="wait">You already submitted a caption<br>Waiting for all submissions</p>');
 
@@ -99,9 +81,7 @@ Template.input.events({
       event.target.name.value = '';
 
       //disable ability to resubmit
-      $('input').prop('disabled', true);
-      $('textarea').prop('disabled', true);
-      $('button').prop('disabled', true);
+      $('field').prop('disabled', true);
       $('button').html('Please wait');
       $('div.input').append('<p class="wait">Waiting for all submissions</p>');
 
