@@ -1,25 +1,33 @@
+// Get the score for the caption and handle edge case if values don't exist
 var getScore = function(caption) {
-  return caption.upvoteCount - caption.downvoteCount;
+  var upvoteCount = caption.upVote || 0;
+  var downvoteCount = caption.downVote || 0;
+  return upvoteCount - downvoteCount;
 };
 
+// Sort function to rank captions from highest to lowest votes
 var sortCaptions = function(a, b) {
   return getScore(b) - getScore(a);
 };
 
+// Return all the captions, sorted by number of votes
 var getWinners = function() {
   var captions = Captions.find({}).fetch();
-  console.log('before sort', captions);
   captions.sort(sortCaptions);
-  console.log('after sort', captions);
   return captions;
 };
 
+// Use the playerID to find the name of the player
 var getName = function(playerID) {
   var player = Players.findOne({playerID:playerID});
-  return player.name;
+  if (player) {
+    return player.name ? player.name : 'Anonymous';
+  }
+  return 'Anonymous';
 };
 
 Template.results.helpers({
+  // Return info for the winning caption
   winner: function() {
     var winner = getWinners()[0];
     return {
@@ -28,6 +36,7 @@ Template.results.helpers({
       score: getScore(winner)
     };
   },
+  // Return info for all the runners up
   runnersUp: function() {
     var runnersUp = getWinners().slice(1, 5);
     for (var i = 0; i < runnersUp.length; i++) {
@@ -35,6 +44,7 @@ Template.results.helpers({
     }
     return runnersUp;
   },
+  // Return the path of the active photo
   photoPath: function() {
     var photo = Games.find({}).fetch();
     var photoID = photo[0].photoID;
@@ -44,6 +54,7 @@ Template.results.helpers({
 });
 
 Template.runnerUp.helpers({
+  // Return the score for runners up, setting any negative votes counts to 0
   score: function() {
     var score = this.upvoteCount - this.downvoteCount;
     if (isNaN(score) || score < 0) {
