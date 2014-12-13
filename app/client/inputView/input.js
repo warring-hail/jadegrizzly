@@ -12,7 +12,6 @@ var stateRedirect = function(num) {
 };
 
 var playerID = '';
-var gameID = Games.findOne()._id;
 
 //set playerID if new player; get playerID if old player
 if (!sessionStorage.getItem('currentPlayerID')) {
