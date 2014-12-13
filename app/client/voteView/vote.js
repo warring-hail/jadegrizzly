@@ -75,7 +75,7 @@ Template.onecaption.events({
   'click i.voteButton': function(evt, template) {
     var stateNum = Games.findOne().stateID;
     if (stateNum !== 2) {
-      stateRedirect(stateNum);
+      Router.go('/s' + stateNum);
     } else {
       var userId = Session.get('currentPlayerID');
       var captionId = this._id;
