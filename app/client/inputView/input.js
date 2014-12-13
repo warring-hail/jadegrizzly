@@ -6,19 +6,12 @@ Photos = new Meteor.Collection('photos');
 Captions = new Meteor.Collection('captions');
 Games = new Meteor.Collection('games');
 
-var disableSubmit = function() {
+var disableForm = function(message) {
   //disable ability to resubmit
-  $('field').prop('disabled', true);
+  $('.field').prop('disabled', true);
   $('button').html('Please wait');
-  $('div.input').append('<p class="wait">Waiting for all submissions</p>');
+  $('div.input').append('<p class="wait">' + message + '</p>');
   // Prevent default form submit
-  return false;
-};
-
-var disableRepeat = function() {
-  $('field').prop('disabled', true);
-  $('button').html('Please wait');
-  $('div.input').append('<p class="wait">You already submitted a caption<br>Waiting for all submissions</p>');
   return false;
 };
 
@@ -56,20 +49,21 @@ Template.input.events({
   'submit .new-caption': function(event) {
     var captions = Captions.find().fetch();
     var found = Boolean(_.findWhere(captions, {playerID: playerID}));
+    console.log(found);
 
     var game = Games.findOne();
     var stateID = game.stateID;
     var atCorrectState = (!game || game.stateID === 1);
+    console.log(atCorrectState);
 
     if (found && atCorrectState) {
       //disable ability to resubmit
-      disableRepeat();
+      return disableForm('You already submitted a caption<br>Waiting for all submissions');
     } else if (found && !atCorrectState) {
-      disableRepeat();
-
       setTimeout(function() {
         stateRedirect(stateID);
-      }, 1500);
+      }, 3000);
+      return disableForm('You already submitted a caption<br>Waiting for all submissions');
     } else {
       var caption = event.target.caption.value;
       var name = event.target.name.value;
@@ -89,7 +83,7 @@ Template.input.events({
       event.target.caption.value = '';
       event.target.name.value = '';
 
-      disableSubmit();
+      return disableForm('Waiting for all submissions');
     }
   }
 });
