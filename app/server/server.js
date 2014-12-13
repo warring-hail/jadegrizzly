@@ -145,7 +145,11 @@ Meteor.methods({
   captionsInsert: function(caption, id) {
     Captions.insert({
       playerID: id,
-      text: caption
+      text: caption,
+      upvoteCount: 0,
+      downvoteCount: 0,
+      upvoteUsers: [],
+      downvoteUsers: []
     });
   },
 

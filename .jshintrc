@@ -36,6 +36,8 @@
         "Router",
         "Session",
         "Template",
-        "Tracker"
+        "Tracker",
+        "sessionStorage",
+        "_"
     ]
 }
